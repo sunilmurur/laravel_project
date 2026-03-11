@@ -1,0 +1,5 @@
+@include('common.header')
+@include('common.top_header')
+@include('common.side_menu')
+@yield('pagebody')
+@include('common.footer')
