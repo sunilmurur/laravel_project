@@ -26,6 +26,22 @@ if (!function_exists('get_category')) {
         return $opt;
     }
 }
+/** Get category List */
+if (!function_exists('get_customer_byId')) {
+        
+    function get_customer_byId($id)
+    {
+        //return DB::table('employees')->get();
+        $get_customer_name = '';
+        $ret_cust = '';
+        $get_customer_name = DB::table('customer_models')->select('customer_name')->where('id',$id)->get();
+        if($get_customer_name)
+        {
+           $ret_cust = $get_customer_name[0]->customer_name;
+        }
+        return $ret_cust;
+    }
+}
 /** Get Valaya Details */
 if (!function_exists('get_valaya')) {
         
@@ -44,6 +60,24 @@ if (!function_exists('get_valaya')) {
         return $opt;
     }
 }
+/** Get Purcahse Type(Akki, kai, Oil) */
+if (!function_exists('get_purcahse_type')) {
+        
+    function get_purcahse_type($field = 0)
+    {
+        //return DB::table('employees')->get();
+        $get_purcahse_detail = '';
+        $opt[''] ='None';
+        $get_purcahse_detail = DB::table('purcahse_types')->select('id', 'type')->where('status',1)->get();
+        if($get_purcahse_detail)
+        {
+            foreach($get_purcahse_detail as $r){
+                $opt[$r->id] = $r->type;  
+            }
+        }
+        return $opt;
+    }
+}
 /** Get purchase category List */
 if (!function_exists('get_purchase_category')) {
         
@@ -51,7 +85,7 @@ if (!function_exists('get_purchase_category')) {
     {
         //return DB::table('employees')->get();
         $get_category_detail = '';
-        $opt[''] ='Select Purchase Category';
+        $opt[''] ='Select Category';
         $get_category_detail = DB::table('purchase_category_models')->select('id', 'name')->where('status',1)->get();
         if($get_category_detail)
         {
@@ -70,7 +104,7 @@ if (!function_exists('get_purchase_sub_category')) {
     {
         //return DB::table('employees')->get();
         $get_sub_category_detail = '';
-        $opt[''] ='Select Purchase Category';
+        $opt[''] ='Select Category';
         $get_sub_category_detail = DB::table('purchase_subcategory_models')->select('id', 'name')->where('status',1)->get();
         if($get_sub_category_detail)
         {

@@ -2,9 +2,9 @@
 // Breadcrum button Detail
 $common['pagetitle']=$data['title'];
 $common['btntitle']="Manage";
-$common['btnurl']= route("Purchase.index");
-$common['breadcrumb1']="Purchase";
-$common['breadcrumb2']="Add Purchase";
+$common['btnurl']= route("Sales.index");
+$common['breadcrumb1']="Sales";
+$common['breadcrumb2']="Edit Sales";
 @endphp
 @extends('index',$common)
 @section('pagebody')
@@ -21,21 +21,23 @@ $common['breadcrumb2']="Add Purchase";
                                     <div class="card">
                                         <div class="card-header">
                                             <div class="card-block">
-                                                <h4 class="sub-title">Purchase Input</h4>
-                                                <form  method="POST" action="{{ route('Purchase.store') }}" enctype="multipart/form-data">
+                                                <h4 class="sub-title">Edit Sales Input</h4>
+                                                <form  method="POST" action="{{  route('Sales.update',['id' => $edit_sales->id])  }}" enctype="multipart/form-data">
                                                     @csrf
                                                     @php 
                                                      $res_category = get_purchase_category(); 
                                                      $res_subcategory = get_purchase_sub_category(); 
                                                      $res_purchase_by =  get_purchase_by();
                                                      $res_purchase_type =  get_purcahse_type();
+                                                     
                                                     @endphp
                                                     <div class="form-group row">
                                                         <label class="col-sm-2 col-form-label">Select Category</label>
                                                         <div class="col-sm-10">
+                                                            <input type="hidden" class="form-control" name = "sales_id"  value = {{$edit_sales->id}} >
                                                             <select name="category" class="form-control">
                                                                 @foreach($res_category as $id => $name)
-                                                                    <option value="{{ $id }}">{{ $name }}</option>
+                                                                    <option value="{{ $id }}" <?php if($id == $edit_sales->category_id){ echo 'selected'; } ?>>{{ $name }}</option>
                                                                 @endforeach
                                                             </select>
                                                             @error('category')
@@ -48,49 +50,32 @@ $common['breadcrumb2']="Add Purchase";
                                                         <div class="col-sm-10">
                                                             <select name="subcategory" class="form-control">
                                                                 @foreach($res_subcategory as $sub_id => $sub_name)
-                                                                    <option value="{{ $sub_id }}">{{ $sub_name }}</option>
+                                                                    <option value="{{ $sub_id }}" <?php if($sub_id == $edit_sales->subcategory_id){ echo 'selected'; } ?>>{{ $sub_name }}</option>
                                                                 @endforeach
                                                             </select>
                                                             @error('subcategory')
                                                                 <div class="invalid-feedback">{{ $message }}</div>
                                                             @enderror
                                                         </div> 
-                                                    </div>
-
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-2 col-form-label">Customer Name</label>
-                                                        <input type="hidden" name="customer_id" id="purchase_customer_id">
-                                                        <div class="col-sm-10">
-                                                            <input type="text" class="form-control customer_name  @error('customer_name') is-invalid @enderror" name = "customer_name"
-                                                            placeholder="Search Customer...."  value="{{ old('customer_name') }}">
-                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 100%;">
-                                                                    <!-- Dropdown items will be dynamically added here -->
-                                                                </div>
-                                                            @error('quantity')
-                                                                <div class="invalid-feedback">{{ $message }}</div>
-                                                            @enderror
-                                                        </div>
-                                                      
-                                                    </div>
-
+                                                    </div> 
                                                       <div class="form-group row">
-                                                        <label class="col-sm-2 col-form-label">Select Purcashe Type(Optional)</label>
+                                                        <label class="col-sm-2 col-form-label">Select Sales Type</label>
                                                         <div class="col-sm-10">
                                                             <select name="type" class="form-control">
                                                                 @foreach($res_purchase_type as $id => $type)
-                                                                    <option value="{{ $id }}">{{ $type }}</option>
+                                                                    <option value="{{ $id }}" <?php if($id == $edit_sales->purcahse_types_id){ echo 'selected'; } ?>>{{ $type }}</option>
                                                                 @endforeach
                                                             </select>
-                                                            @error('subcategory')
+                                                            @error('type')
                                                                 <div class="invalid-feedback">{{ $message }}</div>
                                                             @enderror
                                                         </div> 
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-2 col-form-label">Purchase Details</label>
+                                                        <label class="col-sm-2 col-form-label">Sales Details</label>
                                                             <div class="col-sm-10">
                                                                     <textarea rows="5" cols="5" class="form-control @error('purchase_detail') is-invalid @enderror" name="detail"
-                                                                        placeholder="Enter Purchase Details">{{ old('purchase_detail') }}</textarea>
+                                                                        placeholder="Enter Purchase Details">{{$edit_sales->detail}}</textarea>
                                                                         @error('purchase_detail')
                                                                             <div class="invalid-feedback">{{ $message }}</div>
                                                                         @enderror
@@ -100,20 +85,8 @@ $common['breadcrumb2']="Add Purchase";
                                                         <label class="col-sm-2 col-form-label">Quantity</label>
                                                         <div class="col-sm-10">
                                                             <input type="text" class="form-control  @error('quantity') is-invalid @enderror" name = "quantity"
-                                                            placeholder="Enter Quantity"  value="{{ old('quantity') }}">
+                                                            placeholder="Enter Quantity"  value="{{$edit_sales->quantity}}">
                                                             @error('quantity')
-                                                                <div class="invalid-feedback">{{ $message }}</div>
-                                                            @enderror
-                                                        </div>
-                                                      
-                                                    </div>
-
-                                                     <div class="form-group row">
-                                                        <label class="col-sm-2 col-form-label">Amount</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="text" class="form-control  @error('amount') is-invalid @enderror" name = "amount"
-                                                            placeholder="Enter Amount"  value="{{ old('amount') }}">
-                                                            @error('amount')
                                                                 <div class="invalid-feedback">{{ $message }}</div>
                                                             @enderror
                                                         </div>
@@ -124,7 +97,7 @@ $common['breadcrumb2']="Add Purchase";
                                                         <label class="col-sm-2 col-form-label">Date</label>
                                                         <div class="col-sm-10">
                                                             <input type="date" class="form-control  @error('date') is-invalid @enderror" name = "date"
-                                                            placeholder="Enter Amount"  value="{{ old('date') }}">
+                                                            placeholder="Enter Amount"  value="{{$edit_sales->date}}">
                                                             @error('date')
                                                                 <div class="invalid-feedback">{{ $message }}</div>
                                                             @enderror
@@ -132,7 +105,7 @@ $common['breadcrumb2']="Add Purchase";
                                                       
                                                     </div>
                                                     
-                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Add</button>
+                                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Update</button>
                                                 </form>     
                                             </div>
                                         </div>
@@ -149,7 +122,4 @@ $common['breadcrumb2']="Add Purchase";
 </div>
 <!-- Basic Form Inputs card end -->
 @endsection 
-@push('scripts')
-<script type="text/javascript" src="{{ asset('js/custom/sevapooja.min.js') }}"></script>
-@endpush
 

@@ -14,6 +14,8 @@ use App\Http\Controllers\master\CustomerController;
 use App\Http\Controllers\purchase\PurchaseController;
 use App\Http\Controllers\purchase\PurchaseCategoryController;
 use App\Http\Controllers\purchase\PurchaseSubcategoryController;
+use App\Http\Controllers\sales\SalesController;
+
 
 
 
@@ -165,9 +167,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/purchase/add_purchase', 'create')->name('Purchase.create');
         Route::post('/purchase/store_purchase', 'store')->name('Purchase.store');
         Route::get('purchase_det', 'get_all_purchase')->name('Purchase.get_all_purchase');
-        Route::get('/purchase/edit_purchase/{}', 'edit')->name('Purchase.edit');
+        Route::get('/purchase/edit_purchase/{id}', 'edit')->name('Purchase.edit');
+        Route::post('/purchase/update_purchase/{id}', 'update')->name('Purchase.update');
+        Route::get('purchase_report_ajax', 'purchase_report_ajax')->name('Purchase.purcahse_report_ajax');
     });
-    
          // Purchase Category Controller Route
          Route::controller(PurchaseCategoryController::class)->group(function () {
             Route::get('/purchase_category/view_purchase_category', 'index')->name('Purchasecategory.index');
@@ -186,6 +189,16 @@ Route::middleware('auth')->group(function () {
         Route::get('purchase_subcat', 'get_all_subcategory')->name('Purchasesubcategory.get_all_subcategory');
         Route::get('/purchase_subcategory/edit_purchase_subcategory/{id}', 'edit')->name('Purchasesubcategory.edit');
         Route::post('/purchase_subcategory/update_purchase_subcategory/{id}', 'update')->name('Purchasesubcategory.update');
+    });
+        // Sales Controller Route
+      Route::controller(SalesController::class)->group(function () {
+        Route::get('/sales/view_sales', 'index')->name('Sales.index');
+        Route::get('/sales/add_sales', 'create')->name('Sales.create');
+        Route::post('/sales/store_sales', 'store')->name('Sales.store');
+        Route::get('purchase_det', 'get_all_purchase')->name('Sales.get_all_sales');
+        Route::get('/sales/edit_sales/{id}', 'edit')->name('Sales.edit');
+        Route::post('/sales/update_purchase/{id}', 'update')->name('Sales.update');
+        Route::get('sales_report_ajax', 'sales_report_ajax')->name('Sales.sales_report_ajax');
     });
     //Route::get('cat', 'CategoryController@get_all_category')->name('get.cat');
     //Route::get('cat', [CategoryController::class, 'get_all_category'])->name('get.cat');

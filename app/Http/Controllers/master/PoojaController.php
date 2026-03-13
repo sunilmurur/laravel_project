@@ -85,11 +85,8 @@ class PoojaController extends Controller
         $cat->code = $validatedData['code'];   
 
         if ($cat->save()) {
-            //return redirect()->route('Pooja.index')->with('success', 'Pooja Data saved Successfully');
-            return response()->json([
-    'message' => 'Pooja saved successfullssssssssy!',
-    'data' => $cat
-]);
+            return redirect()->route('Pooja.index')->with('success', 'Pooja Data saved Successfully');
+      
         } else {
             // Data not saved
             // Redirect back with error message

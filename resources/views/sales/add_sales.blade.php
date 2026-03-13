@@ -2,9 +2,9 @@
 // Breadcrum button Detail
 $common['pagetitle']=$data['title'];
 $common['btntitle']="Manage";
-$common['btnurl']= route("Purchase.index");
-$common['breadcrumb1']="Purchase";
-$common['breadcrumb2']="Add Purchase";
+$common['btnurl']= route("Sales.index");
+$common['breadcrumb1']="Sales";
+$common['breadcrumb2']="Add Sales";
 @endphp
 @extends('index',$common)
 @section('pagebody')
@@ -21,8 +21,8 @@ $common['breadcrumb2']="Add Purchase";
                                     <div class="card">
                                         <div class="card-header">
                                             <div class="card-block">
-                                                <h4 class="sub-title">Purchase Input</h4>
-                                                <form  method="POST" action="{{ route('Purchase.store') }}" enctype="multipart/form-data">
+                                                <h4 class="sub-title">Sales Input</h4>
+                                                <form  method="POST" action="{{ route('Sales.store') }}" enctype="multipart/form-data">
                                                     @csrf
                                                     @php 
                                                      $res_category = get_purchase_category(); 
@@ -56,25 +56,8 @@ $common['breadcrumb2']="Add Purchase";
                                                             @enderror
                                                         </div> 
                                                     </div>
-
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-2 col-form-label">Customer Name</label>
-                                                        <input type="hidden" name="customer_id" id="purchase_customer_id">
-                                                        <div class="col-sm-10">
-                                                            <input type="text" class="form-control customer_name  @error('customer_name') is-invalid @enderror" name = "customer_name"
-                                                            placeholder="Search Customer...."  value="{{ old('customer_name') }}">
-                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 100%;">
-                                                                    <!-- Dropdown items will be dynamically added here -->
-                                                                </div>
-                                                            @error('quantity')
-                                                                <div class="invalid-feedback">{{ $message }}</div>
-                                                            @enderror
-                                                        </div>
-                                                      
-                                                    </div>
-
                                                       <div class="form-group row">
-                                                        <label class="col-sm-2 col-form-label">Select Purcashe Type(Optional)</label>
+                                                        <label class="col-sm-2 col-form-label">Select Sales Type</label>
                                                         <div class="col-sm-10">
                                                             <select name="type" class="form-control">
                                                                 @foreach($res_purchase_type as $id => $type)
@@ -87,7 +70,7 @@ $common['breadcrumb2']="Add Purchase";
                                                         </div> 
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-2 col-form-label">Purchase Details</label>
+                                                        <label class="col-sm-2 col-form-label">Sales Details</label>
                                                             <div class="col-sm-10">
                                                                     <textarea rows="5" cols="5" class="form-control @error('purchase_detail') is-invalid @enderror" name="detail"
                                                                         placeholder="Enter Purchase Details">{{ old('purchase_detail') }}</textarea>
@@ -102,18 +85,6 @@ $common['breadcrumb2']="Add Purchase";
                                                             <input type="text" class="form-control  @error('quantity') is-invalid @enderror" name = "quantity"
                                                             placeholder="Enter Quantity"  value="{{ old('quantity') }}">
                                                             @error('quantity')
-                                                                <div class="invalid-feedback">{{ $message }}</div>
-                                                            @enderror
-                                                        </div>
-                                                      
-                                                    </div>
-
-                                                     <div class="form-group row">
-                                                        <label class="col-sm-2 col-form-label">Amount</label>
-                                                        <div class="col-sm-10">
-                                                            <input type="text" class="form-control  @error('amount') is-invalid @enderror" name = "amount"
-                                                            placeholder="Enter Amount"  value="{{ old('amount') }}">
-                                                            @error('amount')
                                                                 <div class="invalid-feedback">{{ $message }}</div>
                                                             @enderror
                                                         </div>
@@ -149,7 +120,4 @@ $common['breadcrumb2']="Add Purchase";
 </div>
 <!-- Basic Form Inputs card end -->
 @endsection 
-@push('scripts')
-<script type="text/javascript" src="{{ asset('js/custom/sevapooja.min.js') }}"></script>
-@endpush
 

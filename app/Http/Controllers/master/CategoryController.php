@@ -64,7 +64,7 @@ class CategoryController extends Controller
         $cat->name = $validatedData['name'];
         $cat->description = $validatedData['description'];
         if ($cat->save()) {
-            return redirect()->route('Purchasecategory.index')->with('success', 'Data saved Successfully');
+            return redirect()->route('Category.index')->with('success', 'Category saved Successfully');
         } else {
             // Data not saved
             // Redirect back with error message
@@ -124,7 +124,7 @@ class CategoryController extends Controller
        // $category->save();
         if ($category->save()) {
             // Data saved successfully
-            return redirect()->route('Purchasecategory.index')->with('success', 'Category Updated Successfully');
+            return redirect()->route('Category.index')->with('success', 'Category Updated Successfully');
         } else {
             // Data not saved
             // Redirect back with error message

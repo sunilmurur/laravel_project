@@ -2,7 +2,7 @@
 @php
 $common['pagetitle']=$data['title'];
 $common['btntitle']="Manage";
-$common['btnurl']= route("Category.index");
+$common['btnurl']= route("Purchasecategory.index");
 $common['breadcrumb1']="Purchase Category";
 $common['breadcrumb2']="Add Purchase Category";
 @endphp

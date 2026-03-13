@@ -13,18 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_models', function (Blueprint $table) {
+        Schema::create('sales_models', function (Blueprint $table) {
             $table->id();
             $table->integer("category_id")->comment('purcahse_category_model_id');
             $table->integer("subcategory_id")->comment('purcahse_subcategory_model_id');
             $table->text("detail");
-            $table->decimal('amount',10,2);
             $table->date("date");
-            $table->integer("is_grocery_selected")->comment('Akki,Kai, Oil Selected or not');
             $table->integer("purcahse_types_id")->comment('from purcahse types id');
             $table->integer("quantity")->comment('');
             $table->integer("financial_year_id");
-            $table->integer("customer_id")->comment('customer model');
             $table->timestamps();
         });
     }
@@ -36,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_models');
+        Schema::dropIfExists('sales_models');
     }
 };

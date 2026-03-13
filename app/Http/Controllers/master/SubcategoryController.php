@@ -64,7 +64,7 @@ class SubcategoryController extends Controller
         $cat->name = $validatedData['name'];
         $cat->description = $validatedData['description'];
         if ($cat->save()) {
-            return redirect()->route('Subcategory.index')->with('success', 'Data saved Successfully');
+            return redirect()->route('Subcategory.index')->with('success', 'Sub Category Saved Successfully');
         } else {
             // Data not saved
             // Redirect back with error message

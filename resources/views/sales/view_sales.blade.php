@@ -81,7 +81,7 @@ $common['breadcrumb2']="View Purchase Category";
                     </div>
                     </div>
                     <div class="col-sm-2 mt-4">
-                        <button type="button" class="btn btn-primary waves-effect waves-light submit_purchase_report">Submit</button>
+                        <button type="button" class="btn btn-primary waves-effect waves-light submit_sales_report">Submit</button>
                     </div>
                 </div>
                     
@@ -94,15 +94,13 @@ $common['breadcrumb2']="View Purchase Category";
                                     <!-- Basic Form Inputs card start -->
                                     <div class="card">
                                         <div class="table-view">
-                                        <table id="view_purchase" class="display cell-border" width="100%">
+                                        <table id="view_sales" class="display cell-border" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Category</th>
                                                     <th>Sub Category</th>
-                                                    <th>Customer Name </th>
                                                     <th>Description</th>
-                                                    <th>Amount</th>
                                                      <th>Date</th>
                                                     <th>Akki(KG)</th>
                                                     <th>Kai(No)</th>
@@ -144,7 +142,7 @@ $common['breadcrumb2']="View Purchase Category";
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
 
 
-<script type="text/javascript" src="{{ asset('js/custom/data-table/view-purchase.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/custom/data-table/view-sales.min.js') }}"></script>
 @endpush 
 
 

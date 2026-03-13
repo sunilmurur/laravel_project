@@ -32,6 +32,7 @@
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li> -->
+                      <!--Master Menu -->
                     <li class="pcoded-hasmenu">
                         <a href="javascript:void(0)">
                             <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
@@ -80,6 +81,70 @@
                            
                         </ul>
                     </li>
+                      <!--Purchase Menu -->
+                     <li class="pcoded-hasmenu">
+                        <a href="javascript:void(0)">
+                            <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                            <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Purchase</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                        <ul class="pcoded-submenu">
+                            <li class=" ">
+                                <a href="{{ route('Purchasecategory.index') }}">
+                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Purchase Category</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                            <li class=" ">
+                                <a href="{{ route('Purchasesubcategory.index') }}">
+                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Purchase Sub Category</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                            <li class=" ">
+                                <a href="{{ route('Purchase.create') }}">
+                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Add Purchase</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>
+                            <li class=" ">
+                                <a href="{{ route('Purchase.index') }}">
+                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Purchase Report</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>                           
+                        </ul>
+                    </li>
+                    <!--Sales Menu -->
+                    <li class="pcoded-hasmenu">
+                        <a href="javascript:void(0)">
+                            <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                            <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Sales</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                        
+                        <ul class="pcoded-submenu">
+                            <li class=" ">
+                                <a href="{{ route('Sales.create') }}">
+                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Add Used(A/K/L)</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li> 
+                            <li class=" ">
+                                <a href="{{ route('Sales.index') }}">
+                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Used(A/K/L)</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>                            
+                        </ul>
+                    </li>
+                  <!--Seva Pooja -->   
                 </ul>
                 <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Seav Pooja</div>
                 <ul class="pcoded-item pcoded-left-item">
@@ -91,6 +156,7 @@
                         </a>
                     </li>
                     <li>
+                    <!--Seva Pooja  Report-->
                         <a href="{{ route('Sevapooja.seva_pooja_report') }}">
                             <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                             <span class="pcoded-mtext" data-i18n="nav.form-components.main">Seva Pooja Report</span>

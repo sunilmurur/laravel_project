@@ -39,23 +39,12 @@ class SevapoojaController extends Controller
     {
         $data = $request->all();
         $search_value = $data['search_value'];
-       /* $pooja = DB::table('pooja_models')
-        ->join('category_models', 'category_models.id', '=', 'pooja_models.category_id') // Join shares table with users table
-        ->join('subcategory_models', 'subcategory_models.id', '=', 'pooja_models.subcategory_id') // Join users table with follows table
-        ->select('pooja_models.*', 'category_models.name as category_name','subcategory_models.name as subcategory_name') // Select all columns from shares table and the name column from users table
-        ->get(); // Execute the query and get the results*/
-        
         $result = DB::table('customer_models')
         ->select('customer_name','id','mobile_no')
         ->where(function($query) use ($search_value) {
             $query->where('customer_name', 'like', '%' . $search_value . '%')
             ->orWhere('mobile_no', 'like', '%' . $search_value . '%');
         })->limit(10)->get();
-       /* foreach($result as $r)
-        {
-            print_R($r);
-        }  */
-        //dd($result);
         return response()->json($result);
     }
     public function search_on_pooja(Request $request)
@@ -252,6 +241,7 @@ class SevapoojaController extends Controller
         ->where($conditions)
         ->select('seva_pooja_receipts.*', 'customer_models.customer_name as customer_name','customer_models.mobile_no as mobile_no','years.display_year as display_year','payment_types.payment_type as payment_type') // Select all columns from shares table and the name column from users table
         ->get(); // Execute the query and get the results
+       
         return DataTables::of($seva_pooja)->make(true); // Pass to Data table
         
         }
