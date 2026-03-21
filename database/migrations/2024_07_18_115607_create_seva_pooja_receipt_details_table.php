@@ -22,6 +22,10 @@ return new class extends Migration
             $table->integer("qty");
             $table->decimal('price',10,2);
             $table->decimal('total',10,2);
+            $table->integer("category_id");
+            $table->integer("subcategory_id");
+            $table->integer("financial_year_id");
+            $table->date("receipt_date");
             $table->timestamps();
         });
     }

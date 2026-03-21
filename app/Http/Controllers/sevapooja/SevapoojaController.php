@@ -94,12 +94,14 @@ class SevapoojaController extends Controller
             $financial_year_Date = financial_year_check();
             $db_financial_year_Date_id = $financial_year_Date[0];
            /** Retrive Last Recipt No */
+           
             $get_last_insert_detail = DB::table('seva_pooja_receipts')
             ->select('*')
            // ->where('display_year', '=', $db_year_compare)
            ->orderBy('id','desc')
            ->limit(1)
             ->get();
+
             if($get_last_insert_detail->isNotEmpty())
             {
 
@@ -134,6 +136,14 @@ class SevapoojaController extends Controller
             {
                 foreach($resp_data['pooja_details'] as $r)
                 {
+                    /** Retrive Last Recipt No */
+                    $get_cat_and_subacat = '';
+                    $get_cat_and_subacat = DB::table('pooja_models')
+                    ->select('category_id','subcategory_id')
+                    ->where('id', $r['pooja_id'])
+                    ->first();
+                       // print_R($get_cat_and_subacat->category_id);
+                       // exit;
                     $receipt_detail_id = DB::table('seva_pooja_receipt_details')->insertGetId([
                         'seva_pooja_receipt_id' => $receipt_id,
                         'pooja_id'=> $r['pooja_id'],
@@ -142,6 +152,10 @@ class SevapoojaController extends Controller
                         'qty' => $r['qty'],
                         'price'=> $r['price'],
                         'total'=> $r['total'],
+                        'category_id'=> $get_cat_and_subacat->category_id,
+                        'subcategory_id' => $get_cat_and_subacat->subcategory_id,
+                        'financial_year_id' => $db_financial_year_Date_id,
+                        'receipt_date' => $resp_data['current_date'],
                         'created_at' => now(),
                     ]);
 

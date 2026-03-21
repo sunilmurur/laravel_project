@@ -24,7 +24,8 @@ return new class extends Migration
             $table->integer("purcahse_types_id")->comment('from purcahse types id');
             $table->integer("quantity")->comment('');
             $table->integer("financial_year_id");
-            $table->integer("customer_id")->comment('customer model');
+            $table->integer("customer_id")->nullable()->comment('customer model');
+            $table->integer("is_donation_selected")->comment('Akki,Kai, Oil Donation Selected or not');
             $table->timestamps();
         });
     }

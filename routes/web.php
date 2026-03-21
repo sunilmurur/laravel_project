@@ -15,6 +15,8 @@ use App\Http\Controllers\purchase\PurchaseController;
 use App\Http\Controllers\purchase\PurchaseCategoryController;
 use App\Http\Controllers\purchase\PurchaseSubcategoryController;
 use App\Http\Controllers\sales\SalesController;
+use App\Http\Controllers\reports\ReportController;
+use App\Http\Controllers\donation\DonationController;
 
 
 
@@ -199,6 +201,24 @@ Route::middleware('auth')->group(function () {
         Route::get('/sales/edit_sales/{id}', 'edit')->name('Sales.edit');
         Route::post('/sales/update_purchase/{id}', 'update')->name('Sales.update');
         Route::get('sales_report_ajax', 'sales_report_ajax')->name('Sales.sales_report_ajax');
+    });
+
+      // Reports Controller Route
+      Route::controller(ReportController::class)->group(function () {
+        Route::get('/reports/ca_reports_sales', 'ca_sales_report')->name('Reports.ca_sales_report');
+        Route::get('/reports/ca_reports_purchase', 'ca_purchase_report')->name('Reports.ca_purchase_report');
+        Route::get('ca_report_sales_ajax', 'ca_report_sales_ajax')->name('Reports.ca_report_sales_ajax');
+        Route::get('ca_report_purchase_ajax', 'ca_report_purchase_ajax')->name('Reports.ca_report_purchase_ajax');
+    });
+
+        // Donation Controller Route
+        Route::controller(DonationController::class)->group(function () {
+        Route::get('/donation/add_donation', 'create')->name('Donation.create');
+        Route::post('/donation/store_donation', 'store')->name('Donation.store');
+        Route::get('/donation/view_donation', 'index')->name('Donation.index');
+        Route::get('donation_report_ajax', 'donation_report_ajax')->name('Donation.donation_report_ajax');
+        Route::get('/donation/edit_donation/{id}', 'edit')->name('Donation.edit');
+        Route::post('/donation/update_donation/{id}', 'update')->name('Donation.update');
     });
     //Route::get('cat', 'CategoryController@get_all_category')->name('get.cat');
     //Route::get('cat', [CategoryController::class, 'get_all_category'])->name('get.cat');

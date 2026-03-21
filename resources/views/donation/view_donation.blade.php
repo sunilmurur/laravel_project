@@ -2,9 +2,9 @@
 // Breadcrum button Detail
 $common['pagetitle']=$data['title'];
 $common['btntitle']="Add";
-$common['btnurl']= route("Category.create");
-$common['breadcrumb1']="Purchase Category";
-$common['breadcrumb2']="View Purchase Category";
+$common['btnurl']= route("Donation.create");
+$common['breadcrumb1']="Donation";
+$common['breadcrumb2']="View Donation";
 @endphp
 @extends('index',$common)
 @section('pagebody')
@@ -70,15 +70,7 @@ $common['breadcrumb2']="View Purchase Category";
                                 @endforeach
                             </select>
                     </div>
-                    <div class="col-sm-2">
-                      <label for="subcategory" class="form-label"><b>Sub Category</b></label>
-                        <select name="subcategory" class="form-control subcategory">
-                                <option value="0">All</option>
-                                @foreach($get_purchase_sub_category as $id => $name)
-                                    <option value="{{ $id }}">{{ $name }}</option>
-                                @endforeach
-                            </select>
-                    </div>
+                  
                     </div>
                     <div class="col-sm-2 mt-4">
                         <button type="button" class="btn btn-primary waves-effect waves-light submit_purchase_report">Submit</button>
@@ -94,14 +86,13 @@ $common['breadcrumb2']="View Purchase Category";
                                     <!-- Basic Form Inputs card start -->
                                     <div class="card">
                                         <div class="table-view">
-                                        <table id="view_purchase" class="display cell-border" width="100%">
+                                        <table id="view_donation" class="display cell-border" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Category</th>
                                                     <th>Sub Category</th>
-                                                    <th>Description</th>
-                                                    <th>Amount</th>
+                                                    <th>Customer Name </th>
                                                      <th>Date</th>
                                                     <th>Akki(KG)</th>
                                                     <th>Kai(No)</th>
@@ -143,7 +134,7 @@ $common['breadcrumb2']="View Purchase Category";
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
 
 
-<script type="text/javascript" src="{{ asset('js/custom/data-table/view-purchase.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/custom/data-table/view-donation.min.js') }}"></script>
 @endpush 
 
 

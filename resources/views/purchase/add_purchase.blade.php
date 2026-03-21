@@ -57,22 +57,6 @@ $common['breadcrumb2']="Add Purchase";
                                                         </div> 
                                                     </div>
 
-                                                    <div class="form-group row">
-                                                        <label class="col-sm-2 col-form-label">Customer Name</label>
-                                                        <input type="hidden" name="customer_id" id="purchase_customer_id">
-                                                        <div class="col-sm-10">
-                                                            <input type="text" class="form-control customer_name  @error('customer_name') is-invalid @enderror" name = "customer_name"
-                                                            placeholder="Search Customer...."  value="{{ old('customer_name') }}">
-                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 100%;">
-                                                                    <!-- Dropdown items will be dynamically added here -->
-                                                                </div>
-                                                            @error('quantity')
-                                                                <div class="invalid-feedback">{{ $message }}</div>
-                                                            @enderror
-                                                        </div>
-                                                      
-                                                    </div>
-
                                                       <div class="form-group row">
                                                         <label class="col-sm-2 col-form-label">Select Purcashe Type(Optional)</label>
                                                         <div class="col-sm-10">

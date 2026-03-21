@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text("mobile_no");
             $table->text('address'); 
             $table->integer('valaya_id'); 
+            $table->integer('print_required')->nullable(); 
             $table->timestamps();
         });
     }

@@ -52,6 +52,7 @@ class PurchaseController extends Controller
                 ['purchase_models.date', '>=', $from_date],
                 ['purchase_models.date', '<=', $to_date],
                 ['purchase_models.financial_year_id', '=', $financial_year],
+                 ['purchase_models.is_donation_selected', '=', 0],
             ];
         if($category != 0)
         {
@@ -66,7 +67,6 @@ class PurchaseController extends Controller
         ->join('purchase_category_models', 'purchase_category_models.id', '=', 'purchase_models.category_id')
         ->join('purchase_subcategory_models', 'purchase_subcategory_models.id', '=', 'purchase_models.subcategory_id')
         ->join('years', 'years.id', '=', 'purchase_models.financial_year_id')
-        ->join('customer_models', 'customer_models.id', '=', 'purchase_models.customer_id')
         ->leftJoin('purcahse_types', 'purcahse_types.id', '=', 'purchase_models.purcahse_types_id')
         ->where($conditions)
         ->select(
@@ -74,7 +74,6 @@ class PurchaseController extends Controller
         'purchase_category_models.name as category_name',
         'purchase_subcategory_models.name as subcategory_name',
         'years.display_year as display_year',
-        'customer_models.customer_name as customer_name',
 
         DB::raw("CASE WHEN purcahse_types.type='Akki' THEN purchase_models.quantity ELSE 0 END as Akki"),
         DB::raw("CASE WHEN purcahse_types.type='Kai' THEN purchase_models.quantity ELSE 0 END as Kai"),
@@ -103,8 +102,6 @@ class PurchaseController extends Controller
             'subcategory' => 'required',
             'date' => 'required',
             'detail' => 'required',
-            'customer_name'=>'required',
-
         ], [
             'amount.required' => 'The name field is required.',
             'subcategory.required' => 'The field is required.',
@@ -112,7 +109,6 @@ class PurchaseController extends Controller
             'date.required' => 'The field is required.',
             'date.required' => 'The field is required.',
             'detail.required' => 'The field is required.',
-            'customer_name.required' => 'The field is required.',
         ]);
     
         $financial_year_Date = financial_year_check();
@@ -127,7 +123,7 @@ class PurchaseController extends Controller
         $cat->quantity = $request->quantity; // optional field
         $cat->purcahse_types_id = $request->type; // optional field
         $cat->financial_year_id = $db_financial_year_Date_id; 
-        $cat->customer_id = $request->customer_id;
+        $cat->is_donation_selected = 0;
         
         if($request->type)
         {
@@ -185,7 +181,6 @@ class PurchaseController extends Controller
             'subcategory' => 'required',
             'date' => 'required',
             'detail' => 'required',
-            'customer_name'=>'required',
         ], [
             'amount.required' => 'The name field is required.',
             'subcategory.required' => 'The field is required.',
@@ -193,7 +188,6 @@ class PurchaseController extends Controller
             'date.required' => 'The field is required.',
             'date.required' => 'The field is required.',
             'detail.required' => 'The field is required.',
-            'customer_name.required' => 'The field is required.',
         ]);
     
         $financial_year_Date = financial_year_check();
@@ -207,7 +201,6 @@ class PurchaseController extends Controller
         $cat->quantity = $request->quantity; // optional field
         $cat->purcahse_types_id = $request->type; // optional field
         $cat->financial_year_id = $db_financial_year_Date_id; 
-        $cat->customer_id = $request->customer_id;
         
         if($request->type)
         {

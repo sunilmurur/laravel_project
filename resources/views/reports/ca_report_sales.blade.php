@@ -40,8 +40,8 @@ $common['breadcrumb2']="View Purchase Category";
                         @php
                         $res_todays_date = gettodaydate(); 
                         $res_years = get_years();
-                        $get_purchase_category = get_purchase_category();
-                        $get_purchase_sub_category = get_purchase_sub_category();
+                        $get_category = get_category();
+                        $get_sub_category = get_sub_category();
                         @endphp
                     <div class="col-sm-2">
                     <label for="from_date" class="form-label"><b>From Date</b></label>
@@ -65,7 +65,7 @@ $common['breadcrumb2']="View Purchase Category";
                     <label for="category" class="form-label"><b>Category</b></label>
                         <select name="category" class="form-control category">
                                 <option value="0">All</option>
-                                @foreach($get_purchase_category as $id => $name)
+                                @foreach($get_category as $id => $name)
                                     <option value="{{ $id }}">{{ $name }}</option>
                                 @endforeach
                             </select>
@@ -74,7 +74,7 @@ $common['breadcrumb2']="View Purchase Category";
                       <label for="subcategory" class="form-label"><b>Sub Category</b></label>
                         <select name="subcategory" class="form-control subcategory">
                                 <option value="0">All</option>
-                                @foreach($get_purchase_sub_category as $id => $name)
+                                @foreach($get_sub_category as $id => $name)
                                     <option value="{{ $id }}">{{ $name }}</option>
                                 @endforeach
                             </select>
@@ -94,19 +94,12 @@ $common['breadcrumb2']="View Purchase Category";
                                     <!-- Basic Form Inputs card start -->
                                     <div class="card">
                                         <div class="table-view">
-                                        <table id="view_purchase" class="display cell-border" width="100%">
+                                        <table id="ca-report-sales" class="display cell-border" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Category</th>
-                                                    <th>Sub Category</th>
-                                                    <th>Description</th>
-                                                    <th>Amount</th>
-                                                     <th>Date</th>
-                                                    <th>Akki(KG)</th>
-                                                    <th>Kai(No)</th>
-                                                    <th>Oil(Ltr)</th>
-                                                    <th>Edit</th>
+                                                    <th>Jama</th>
+                                                    <th>Rs</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -130,7 +123,7 @@ $common['breadcrumb2']="View Purchase Category";
 @endsection 
 @push('scripts')
 
-<script src="https://cdn.datatables.net/2.0.6/js/dataTables.min.js"></script>
+
 
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.5/js/dataTables.buttons.min.js"></script>
@@ -143,7 +136,7 @@ $common['breadcrumb2']="View Purchase Category";
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
 
 
-<script type="text/javascript" src="{{ asset('js/custom/data-table/view-purchase.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/custom/data-table/ca-sales-report.min.js') }}"></script>
 @endpush 
 
 

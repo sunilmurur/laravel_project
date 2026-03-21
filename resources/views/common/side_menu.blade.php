@@ -131,14 +131,65 @@
                             <li class=" ">
                                 <a href="{{ route('Sales.create') }}">
                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Add Used(A/K/L)</span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Add Used(A/K/O)</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li> 
                             <li class=" ">
                                 <a href="{{ route('Sales.index') }}">
                                     <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Used(A/K/L)</span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Used(A/K/O)</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>                            
+                        </ul>
+                    </li>
+                       <!--Donation Menu -->
+                    <li class="pcoded-hasmenu">
+                        <a href="javascript:void(0)">
+                            <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                            <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Donation</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                        
+                        <ul class="pcoded-submenu">
+                            <li class=" ">
+                                <a href="{{ route('Donation.index') }}">
+                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">View Donation</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li> 
+                            <li class=" ">
+                                <a href="{{ route('Donation.create') }}">
+                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Add Donation</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>                            
+                        </ul>
+                    </li>
+
+                        <!--Reports Menu -->
+                    <li class="pcoded-hasmenu">
+                        <a href="javascript:void(0)">
+                            <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                            <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Reports</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                        
+                        <ul class="pcoded-submenu">
+                            <li class=" ">
+                                <a href="{{ route('Reports.ca_sales_report') }}">
+                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Jama Report</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li> 
+                            <li class=" ">
+                                <a href="{{ route('Reports.ca_purchase_report') }}">
+                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Karchu Report</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
                             </li>                            

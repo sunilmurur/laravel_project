@@ -94,19 +94,12 @@ $common['breadcrumb2']="View Purchase Category";
                                     <!-- Basic Form Inputs card start -->
                                     <div class="card">
                                         <div class="table-view">
-                                        <table id="view_purchase" class="display cell-border" width="100%">
+                                        <table id="ca-report-purchase" class="display cell-border" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Category</th>
-                                                    <th>Sub Category</th>
-                                                    <th>Description</th>
-                                                    <th>Amount</th>
-                                                     <th>Date</th>
-                                                    <th>Akki(KG)</th>
-                                                    <th>Kai(No)</th>
-                                                    <th>Oil(Ltr)</th>
-                                                    <th>Edit</th>
+                                                    <th>Karchu</th>
+                                                    <th>Rs</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -130,7 +123,7 @@ $common['breadcrumb2']="View Purchase Category";
 @endsection 
 @push('scripts')
 
-<script src="https://cdn.datatables.net/2.0.6/js/dataTables.min.js"></script>
+
 
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.5/js/dataTables.buttons.min.js"></script>
@@ -143,7 +136,7 @@ $common['breadcrumb2']="View Purchase Category";
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
 
 
-<script type="text/javascript" src="{{ asset('js/custom/data-table/view-purchase.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/custom/data-table/ca-purchase-report.min.js') }}"></script>
 @endpush 
 
 
