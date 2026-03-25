@@ -192,7 +192,21 @@
                                     <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Karchu Report</span>
                                     <span class="pcoded-mcaret"></span>
                                 </a>
-                            </li>                            
+                            </li> 
+                            <li class=" ">
+                                <a href="{{ route('Reports.ca_ako_jama_report') }}">
+                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">CA AKO Jama Report</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>   
+                            <li class=" ">
+                                <a href="{{ route('Reports.ca_ako_karchu_report') }}">
+                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">CA AKO Karchu Report</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>                          
                         </ul>
                     </li>
                   <!--Seva Pooja -->   

@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customer_models', function (Blueprint $table) {
+        Schema::create('ako_stocks', function (Blueprint $table) {
             $table->id();
-            $table->text("customer_name");
-            $table->text("mobile_no");
-            $table->text('address'); 
-            $table->integer('valaya_id'); 
-            $table->integer('print_required')->default(0); 
+            $table->integer("akki");
+            $table->integer("kai");
+            $table->integer("oil");
+            $table->integer("financial_year_id");
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_models');
+        Schema::dropIfExists('ako_stocks');
     }
 };

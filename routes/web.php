@@ -207,8 +207,13 @@ Route::middleware('auth')->group(function () {
       Route::controller(ReportController::class)->group(function () {
         Route::get('/reports/ca_reports_sales', 'ca_sales_report')->name('Reports.ca_sales_report');
         Route::get('/reports/ca_reports_purchase', 'ca_purchase_report')->name('Reports.ca_purchase_report');
+        Route::get('/reports/ako_jama_report', 'ca_ako_jama_report')->name('Reports.ca_ako_jama_report');
+        Route::get('/reports/ako_karchu_report', 'ca_ako_karchu_report')->name('Reports.ca_ako_karchu_report');
         Route::get('ca_report_sales_ajax', 'ca_report_sales_ajax')->name('Reports.ca_report_sales_ajax');
         Route::get('ca_report_purchase_ajax', 'ca_report_purchase_ajax')->name('Reports.ca_report_purchase_ajax');
+        Route::get('ca_report_ako_jama_ajax', 'ca_report_ako_jama_ajax')->name('Reports.ca_report_ako_jama_ajax');
+        Route::get('ca_report_ako_karchu_ajax', 'ca_report_ako_karchu_ajax')->name('Reports.ca_report_ako_karchu_ajax');
+
     });
 
         // Donation Controller Route

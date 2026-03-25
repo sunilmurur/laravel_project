@@ -68,7 +68,7 @@ return DataTables::of($customer)->make(true);
       
         $validatedData = $request->validate([
             'customer_name' => 'required|string',
-            'mobile_no' => 'required|int|unique:customer_models,mobile_no',
+            'mobile_no' => 'required|digits:10|unique:customer_models,mobile_no',
             'address' => 'required',
             'valaya' => 'required',
         ], [
@@ -83,6 +83,8 @@ return DataTables::of($customer)->make(true);
         $cat->mobile_no = $validatedData['mobile_no'];
         $cat->address = $validatedData['address'];
         $cat->valaya_id = $validatedData['valaya'];
+        $cat->print_required = $request->has('print_required') ? 1 : 0;
+        
        
         if ($cat->save()) {
             return redirect()->route('Customer.index')->with('success', 'Customer Data saved Successfully');
@@ -151,6 +153,8 @@ return DataTables::of($customer)->make(true);
         $cat->mobile_no = $validatedData['mobile_no'];
         $cat->address = $validatedData['address'];
         $cat->valaya_id = $validatedData['valaya'];
+        $cat->print_required = $request->has('print_required') ? 1 : 0;
+
        
         if ($cat->save()) {
             return redirect()->route('Customer.index')->with('success', 'Customer Data Updated Successfully');

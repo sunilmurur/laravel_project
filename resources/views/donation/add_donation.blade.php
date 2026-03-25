@@ -2,7 +2,7 @@
 // Breadcrum button Detail
 $common['pagetitle']=$data['title'];
 $common['btntitle']="Manage";
-$common['btnurl']= route("Donation.create");
+$common['btnurl']= route("Donation.index");
 $common['breadcrumb1']="Donation";
 $common['breadcrumb2']="Add Donation";
 @endphp

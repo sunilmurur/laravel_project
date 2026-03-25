@@ -71,6 +71,19 @@ $common['breadcrumb2']="Add Customer";
                                                                         @enderror
                                                             </div>
                                                     </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">Print Required</label>
+                                                        <div class="col-sm-10">
+                                                            <div class="form-check">
+                                                                <input type="checkbox" 
+                                                                    class="form-check-input" 
+                                                                    name="print_required" 
+                                                                    value="1"
+                                                                    {{ old('print_required') ? 'checked' : '' }}>
+                                                                <label class="form-check-label">Yes</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <button type="submit" class="btn btn-primary waves-effect waves-light">Add</button>
                                                 </form>     
                                             </div>
