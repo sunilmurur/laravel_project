@@ -67,7 +67,7 @@ $common['breadcrumb2']="AKO Karchu Report";
                                         <table id="ca-report-ako-karchu" class="display cell-border" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
+                                                    <th>SL NO</th>
                                                     <th>Karchu </th>
                                                     <th>Akki</th>
                                                     <th>Kai</th>
@@ -78,7 +78,7 @@ $common['breadcrumb2']="AKO Karchu Report";
                                             <tbody>
                                                 <!-- Table body will be populated via AJAX -->
                                             </tbody>
-                                            <tfoot>
+                                    <tfoot>
                                         <tr>
                                             <th></th>
                                             <th>Grand Total</th>

@@ -97,7 +97,7 @@ $common['breadcrumb2']="View Purchase Category";
                                         <table id="ca-report-purchase" class="display cell-border" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
+                                                    <th>SL NO</th>
                                                     <th>Karchu</th>
                                                     <th>Rs</th>
                                                 </tr>
@@ -105,6 +105,13 @@ $common['breadcrumb2']="View Purchase Category";
                                             <tbody>
                                                 <!-- Table body will be populated via AJAX -->
                                             </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th></th>
+                                                <th style="text-align:left">Grand Total:</th>
+                                                <th id="grand_total_footer"></th>
+                                            </tr>
+                                        </tfoot>
                                         </table>
                                         </div>
                                     </div>

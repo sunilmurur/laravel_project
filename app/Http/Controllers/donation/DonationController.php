@@ -117,8 +117,21 @@ class DonationController extends Controller
         DB::raw("CASE WHEN purcahse_types.type='Oil' THEN purchase_models.quantity ELSE 0 END as Oil")
         )
         ->get();    
-         return DataTables::of($donation_details)->make(true); // Pass to Data table    
-        
+        $grand_total = DB::table('purchase_models')
+        ->leftJoin('purcahse_types', 'purcahse_types.id', '=', 'purchase_models.purcahse_types_id')
+        ->where($conditions)
+        ->select(
+            DB::raw("SUM(CASE WHEN purcahse_types.type='Akki' THEN purchase_models.quantity ELSE 0 END) as Akki"),
+            DB::raw("SUM(CASE WHEN purcahse_types.type='Kai' THEN purchase_models.quantity ELSE 0 END) as Kai"),
+            DB::raw("SUM(CASE WHEN purcahse_types.type='Oil' THEN purchase_models.quantity ELSE 0 END) as Oil")
+        )
+        ->first();
+        // return DataTables::of($donation_details)->make(true); // Pass to Data table    
+            return DataTables::of($donation_details)
+            ->with([
+                'grand_total' => $grand_total
+            ])
+            ->make(true);
     }
     public function edit($id)
     {

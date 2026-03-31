@@ -67,7 +67,7 @@ $common['breadcrumb2']="AKO Jama Report";
                                         <table id="ca-report-ako-jama" class="display cell-border" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
+                                                    <th>SL NO</th>
                                                     <th>Jama </th>
                                                     <th>Akki</th>
                                                     <th>Kai</th>

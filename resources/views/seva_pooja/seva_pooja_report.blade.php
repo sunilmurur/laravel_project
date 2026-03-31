@@ -84,7 +84,7 @@ $common['btntitle']="Add";
                                         <table id="seva_pooja_report" class="display cell-border" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
+                                                    <th>SL No</th>
                                                     <th>Receipt No</th>
                                                     <th>Receipt Date</th>
                                                     <th>Customer Name </th>
@@ -94,12 +94,16 @@ $common['btntitle']="Add";
                                                     <th>Total</th>
                                                 </tr>
                                             </thead>
-                                            <tfoot>
-                                             
-    </tfoot>
                                             <tbody>
                                                 <!-- Table body will be populated via AJAX -->
                                             </tbody>
+                                             <tfoot>
+                                            <tr>
+                                            <th colspan="7" style="text-align:right"><b>Grand Total:</b></th>
+                                            <th></th> <!-- Total -->
+                                            
+                                            </tr>
+                                        </tfoot>
                                         </table>
                                         </div>
                                     </div>

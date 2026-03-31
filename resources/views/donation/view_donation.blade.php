@@ -89,7 +89,7 @@ $common['breadcrumb2']="View Donation";
                                         <table id="view_donation" class="display cell-border" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
+                                                    <th>SL No</th>
                                                     <th>Category</th>
                                                     <th>Sub Category</th>
                                                     <th>Customer Name </th>
@@ -103,6 +103,15 @@ $common['breadcrumb2']="View Donation";
                                             <tbody>
                                                 <!-- Table body will be populated via AJAX -->
                                             </tbody>
+                                   <tfoot>
+                                        <tr>
+                                        <th colspan="5" style="text-align:right"><b>Grand Total:</b></th>
+                                        <th></th> <!-- Akki -->
+                                        <th></th> <!-- Kai -->
+                                        <th></th> <!-- Oil -->
+                                        <th></th> <!-- Edit -->
+                                        </tr>
+                                        </tfoot>
                                         </table>
                                         </div>
                                     </div>
@@ -121,7 +130,7 @@ $common['breadcrumb2']="View Donation";
 @endsection 
 @push('scripts')
 
-<script src="https://cdn.datatables.net/2.0.6/js/dataTables.min.js"></script>
+
 
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.5/js/dataTables.buttons.min.js"></script>

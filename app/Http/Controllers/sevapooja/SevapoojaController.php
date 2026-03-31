@@ -255,8 +255,18 @@ class SevapoojaController extends Controller
         ->where($conditions)
         ->select('seva_pooja_receipts.*', 'customer_models.customer_name as customer_name','customer_models.mobile_no as mobile_no','years.display_year as display_year','payment_types.payment_type as payment_type') // Select all columns from shares table and the name column from users table
         ->get(); // Execute the query and get the results
+
+        // 👉 Grand Total
+        $grandTotal = DB::table('seva_pooja_receipts')
+            ->where($conditions)
+            ->sum('grand_total');
        
-        return DataTables::of($seva_pooja)->make(true); // Pass to Data table
+       // return DataTables::of($seva_pooja)->make(true); // Pass to Data table
+       return DataTables::of($seva_pooja)
+        ->with([
+            'grand_total' => $grandTotal
+        ])
+        ->make(true);
         
         }
 

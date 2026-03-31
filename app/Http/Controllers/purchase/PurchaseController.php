@@ -42,7 +42,7 @@ class PurchaseController extends Controller
     }
     public function purchase_report_ajax(Request $request)
     {
-         $resp_data = $request->all();
+        $resp_data = $request->all();
         $from_date = $resp_data['from_date'];
         $to_date = $resp_data['to_date'];
         $financial_year = $resp_data['financial_year'];
@@ -62,7 +62,15 @@ class PurchaseController extends Controller
         {
                 $conditions[] = ['purchase_models.subcategory_id', '=', $subcategory];
         }
-
+        $grand_total = DB::table('purchase_models')
+        ->leftJoin('purcahse_types', 'purcahse_types.id', '=', 'purchase_models.purcahse_types_id')
+        ->where($conditions)
+        ->select(
+            DB::raw("SUM(CASE WHEN purcahse_types.type='Akki' THEN purchase_models.quantity ELSE 0 END) as Akki"),
+            DB::raw("SUM(CASE WHEN purcahse_types.type='Kai' THEN purchase_models.quantity ELSE 0 END) as Kai"),
+            DB::raw("SUM(CASE WHEN purcahse_types.type='Oil' THEN purchase_models.quantity ELSE 0 END) as Oil")
+        )
+        ->first();
         $purchase_details = DB::table('purchase_models')
         ->join('purchase_category_models', 'purchase_category_models.id', '=', 'purchase_models.category_id')
         ->join('purchase_subcategory_models', 'purchase_subcategory_models.id', '=', 'purchase_models.subcategory_id')
@@ -79,8 +87,20 @@ class PurchaseController extends Controller
         DB::raw("CASE WHEN purcahse_types.type='Kai' THEN purchase_models.quantity ELSE 0 END as Kai"),
         DB::raw("CASE WHEN purcahse_types.type='Oil' THEN purchase_models.quantity ELSE 0 END as Oil")
         )
-        ->get();    
-         return DataTables::of($purchase_details)->make(true); // Pass to Data table    
+        ->get();
+
+     
+         return DataTables::of($purchase_details)
+        ->with([
+            'grand_total' => [
+                'Akki' => $grand_total->Akki ?? 0,
+                'Kai'  => $grand_total->Kai ?? 0,
+                'Oil'  => $grand_total->Oil ?? 0,
+            ]
+        ])
+        ->make(true);
+
+        // return DataTables::of($purchase_details)->make(true); // Pass to Data table    
         
     }
 
