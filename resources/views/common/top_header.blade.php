@@ -53,7 +53,7 @@
                     </a>
                     <a href="#">
                         <!--<img class="img-fluid" src="{{ asset('/images/logo.png')}}" alt="Theme-Logo" /> -->
-                        <span>SAMT</span>
+                        <span>Mahalaxmi Temple</span>
                     </a>
                     <a class="mobile-options"> 
                         <i class="ti-more"></i>
