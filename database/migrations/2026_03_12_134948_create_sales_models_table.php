@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text("detail");
             $table->date("date");
             $table->integer("purcahse_types_id")->comment('from purcahse types id');
-            $table->integer("quantity")->comment('');
+            $table->decimal("quantity",10,2)->comment('');
             $table->integer("financial_year_id");
             $table->timestamps();
         });

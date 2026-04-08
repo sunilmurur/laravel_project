@@ -100,6 +100,7 @@ $common['breadcrumb2']="View Purchase Category";
                                                     <th>SL NO</th>
                                                     <th>Category</th>
                                                     <th>Sub Category</th>
+                                                    <th>Voucher No</th>
                                                     <th>Description</th>
                                                     <th>Amount</th>
                                                      <th>Date</th>
@@ -114,11 +115,13 @@ $common['breadcrumb2']="View Purchase Category";
                                             </tbody>
                                             <tfoot>
                                             <tr>
-                                            <th colspan="6" style="text-align:right"><b>Grand Total:</b></th>
-                                            <th></th> <!-- Akki -->
-                                            <th></th> <!-- Kai -->
-                                            <th></th> <!-- Oil -->
-                                            <th></th> <!-- Edit -->
+                                            <th colspan="5" style="text-align:right"><b>Grand Total:</b></th>
+                                           <th></th> <!-- Amount -->
+                                                <th></th> <!-- Date -->
+                                                <th></th> <!-- Akki -->
+                                                <th></th> <!-- Kai -->
+                                                <th></th> <!-- Oil -->
+                                                <th></th> <!-- Action -->
                                             </tr>
                                         </tfoot>
                                         </table>

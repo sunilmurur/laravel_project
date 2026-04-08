@@ -51,9 +51,9 @@
                     <a class="mobile-search morphsearch-search" href="#">
                         <i class="ti-search"></i>
                     </a>
-                    <a href="index.html">
+                    <a href="#">
                         <!--<img class="img-fluid" src="{{ asset('/images/logo.png')}}" alt="Theme-Logo" /> -->
-                        <span>Shri Aadishakti Mahalakshmi Temple</span>
+                        <span>SAMT</span>
                     </a>
                     <a class="mobile-options"> 
                         <i class="ti-more"></i>

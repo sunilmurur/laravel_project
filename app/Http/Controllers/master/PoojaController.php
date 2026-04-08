@@ -58,7 +58,7 @@ class PoojaController extends Controller
         //
         $validatedData = $request->validate([
             'pooja_name' => 'required|string',
-            'amount' => 'required|int|min:1',
+            'amount' => 'required|numeric|min:0',
             'description' => 'required|string',
             'subcategory' => 'required',
             'category' => 'required',
@@ -67,8 +67,7 @@ class PoojaController extends Controller
             'pooja_name.required' => 'The Pooja name field is required.',
             'pooja_name.string' => 'The Pooja name field must be a string.',
             'amount.required' => 'The amount field is required.',
-            'amount.string' => 'The amount field must be a string.',
-            'amount.min' => 'The amount field must be at least 6 characters.',
+            'amount.min' => 'This field is required.',
             'description.required' => 'The Pooja name field is required.',
             'description.string' => 'The Pooja name field must be a string.',
             'subcategory.required' => 'This field is required.',
@@ -132,7 +131,7 @@ class PoojaController extends Controller
         $cat= PoojaModel::find($id);
         $validatedData = $request->validate([
             'pooja_name' => 'required|string',
-            'amount' => 'required|int|min:1',
+            'amount' => 'required|numeric|min:0',
             'description' => 'required|string',
             'subcategory' => 'required',
             'category' => 'required',
@@ -145,8 +144,7 @@ class PoojaController extends Controller
             'pooja_name.required' => 'The Pooja name field is required.',
             'pooja_name.string' => 'The Pooja name field must be a string.',
             'amount.required' => 'The amount field is required.',
-            'amount.string' => 'The amount field must be a string.',
-            'amount.min' => 'The amount field must be at least 6 characters.',
+            'amount.min' => 'This Field is Required',
             'description.required' => 'The Pooja name field is required.',
             'description.string' => 'The Pooja name field must be a string.',
             'subcategory.required' => 'This field is required.',
@@ -158,7 +156,8 @@ class PoojaController extends Controller
         $cat->pooja_description = $validatedData['description'];
         $cat->amount = $validatedData['amount'];
         $cat->category_id = $validatedData['category'];
-        $cat->subcategory_id = $validatedData['subcategory'];   
+        $cat->subcategory_id = $validatedData['subcategory'];  
+        $cat->code = $validatedData['code'];   
 
         if ($cat->save()) {
             return redirect()->route('Pooja.index')->with('success', 'Pooja Data Updated Successfully');

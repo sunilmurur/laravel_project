@@ -12,4 +12,8 @@ class SubcategoryModel extends Model
         'name',
         'description',
     ];
+     protected $casts = [
+        'status' => 'integer',
+        'is_edit' => 'integer',
+    ];
 }

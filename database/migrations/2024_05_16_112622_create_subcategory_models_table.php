@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text("description");
             $table->integer('status')->default(1); // 0 => Inactive,  1=> Active
             $table->timestamps();
+            $table->integer('is_edit')->default(0); // 0 => Edit,  1=> Can't Edit
         });
     }
 

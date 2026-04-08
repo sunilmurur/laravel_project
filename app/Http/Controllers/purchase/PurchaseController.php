@@ -68,7 +68,8 @@ class PurchaseController extends Controller
         ->select(
             DB::raw("SUM(CASE WHEN purcahse_types.type='Akki' THEN purchase_models.quantity ELSE 0 END) as Akki"),
             DB::raw("SUM(CASE WHEN purcahse_types.type='Kai' THEN purchase_models.quantity ELSE 0 END) as Kai"),
-            DB::raw("SUM(CASE WHEN purcahse_types.type='Oil' THEN purchase_models.quantity ELSE 0 END) as Oil")
+            DB::raw("SUM(CASE WHEN purcahse_types.type='Oil' THEN purchase_models.quantity ELSE 0 END) as Oil"),
+            DB::raw("SUM(purchase_models.amount) as total_amount")
         )
         ->first();
         $purchase_details = DB::table('purchase_models')
@@ -96,6 +97,7 @@ class PurchaseController extends Controller
                 'Akki' => $grand_total->Akki ?? 0,
                 'Kai'  => $grand_total->Kai ?? 0,
                 'Oil'  => $grand_total->Oil ?? 0,
+                'total_amount' => $grand_total->total_amount ?? 0,
             ]
         ])
         ->make(true);
@@ -140,6 +142,7 @@ class PurchaseController extends Controller
         $cat->amount = $validatedData['amount'];
         $cat->date = $validatedData['date'];
         $cat->detail = $validatedData['detail'];
+        $cat->voucher_no = $request->voucher_no; // optional field
         $cat->quantity = $request->quantity; // optional field
         $cat->purcahse_types_id = $request->type; // optional field
         $cat->financial_year_id = $db_financial_year_Date_id; 
@@ -218,6 +221,7 @@ class PurchaseController extends Controller
         $cat->amount = $validatedData['amount'];
         $cat->date = $validatedData['date'];
         $cat->detail = $validatedData['detail'];
+        $cat->voucher_no = $request->voucher_no; // optional field
         $cat->quantity = $request->quantity; // optional field
         $cat->purcahse_types_id = $request->type; // optional field
         $cat->financial_year_id = $db_financial_year_Date_id; 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('valaya_no');
             $table->string('name');
             $table->boolean('status')->default(1);
+            $table->integer('is_edit')->default(0); // 0 => Edit,  1=> Can't Edit
             $table->timestamps();
         });
     }

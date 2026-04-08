@@ -29,7 +29,6 @@ $common['breadcrumb2']="Edit Purchase";
                                                      $res_subcategory = get_purchase_sub_category(); 
                                                      $res_purchase_by =  get_purchase_by();
                                                      $res_purchase_type =  get_purcahse_type();
-                                                     $res_cust_name = get_customer_byId($edit_purchase->customer_id);
                                                     @endphp
                                                     <div class="form-group row">
                                                         <label class="col-sm-2 col-form-label">Select Category</label>
@@ -58,7 +57,7 @@ $common['breadcrumb2']="Edit Purchase";
                                                             @enderror
                                                         </div> 
                                                     </div> 
-                                                      <div class="form-group row">
+                                                    <div class="form-group row">
                                                         <label class="col-sm-2 col-form-label">Select Purcashe Type(Optional)</label>
                                                         <div class="col-sm-10">
                                                             <select name="type" class="form-control">
@@ -70,6 +69,17 @@ $common['breadcrumb2']="Edit Purchase";
                                                                 <div class="invalid-feedback">{{ $message }}</div>
                                                             @enderror
                                                         </div> 
+                                                    </div>
+                                                        <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">Voucher No</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control  @error('voucher_no') is-invalid @enderror" name = "voucher_no"
+                                                            placeholder="Enter Voucher No"  value="{{$edit_purchase->voucher_no}}">
+                                                            @error('voucher_no')
+                                                                <div class="invalid-feedback">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                      
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-sm-2 col-form-label">Purchase Details</label>

@@ -40,6 +40,7 @@ $common['breadcrumb2']="View Pooja";
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Pooja Name </th>
+                                                    <th>Code </th>
                                                     <th>Amount</th>
                                                     <th>Category </th>
                                                     <th>Sub Category </th>

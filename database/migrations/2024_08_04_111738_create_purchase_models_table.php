@@ -22,10 +22,11 @@ return new class extends Migration
             $table->date("date");
             $table->integer("is_grocery_selected")->comment('Akki,Kai, Oil Selected or not');
             $table->integer("purcahse_types_id")->comment('from purcahse types id');
-            $table->integer("quantity")->comment('');
+            $table->decimal("quantity",10,2)->comment('');
             $table->integer("financial_year_id");
             $table->integer("customer_id")->nullable()->comment('customer model');
             $table->integer("is_donation_selected")->comment('Akki,Kai, Oil Donation Selected or not');
+            $table->text("voucher_no")->nullable();
             $table->timestamps();
         });
     }

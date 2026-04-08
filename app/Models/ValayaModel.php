@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ValayaModel extends Model
 {
     use HasFactory;
+     protected $casts = [
+        'status' => 'integer',
+        'is_edit' => 'integer',
+    ];
 }
