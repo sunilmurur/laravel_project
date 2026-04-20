@@ -17,6 +17,8 @@ use App\Http\Controllers\purchase\PurchaseSubcategoryController;
 use App\Http\Controllers\sales\SalesController;
 use App\Http\Controllers\reports\ReportController;
 use App\Http\Controllers\donation\DonationController;
+use App\Http\Controllers\PrintController;
+
 
 
 
@@ -225,6 +227,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/donation/edit_donation/{id}', 'edit')->name('Donation.edit');
         Route::post('/donation/update_donation/{id}', 'update')->name('Donation.update');
     });
+
+    // Print Controller Route
+    Route::get('/print-receipt/{id}', [PrintController::class, 'printReceipt']);
     //Route::get('cat', 'CategoryController@get_all_category')->name('get.cat');
     //Route::get('cat', [CategoryController::class, 'get_all_category'])->name('get.cat');
 });

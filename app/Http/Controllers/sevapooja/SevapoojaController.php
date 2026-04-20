@@ -8,8 +8,7 @@ use App\Models\CustomerModel;
 use Illuminate\Support\Facades\DB; // Import the DB facade
 use Illuminate\Support\Carbon;
 use Yajra\DataTables\Facades\DataTables;
-use Mike42\Escpos\Printer;
-use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+
 
 class SevapoojaController extends Controller
 {
@@ -176,7 +175,7 @@ class SevapoojaController extends Controller
                     )
                     ->where('r.id', $receipt_id)
                     ->first();
-                if($receipt){
+               /* if($receipt){
                        $receipt_items = DB::table('seva_pooja_receipt_details')
                         ->where('seva_pooja_receipt_id', $receipt_id)
                         ->get();
@@ -195,14 +194,15 @@ class SevapoojaController extends Controller
                         'created_at' => $receipt->created_at,
                         'items' => $receipt_items   
                     ];
-                }
-                $this->printReceipt($print_data);
+                }*/
+               // $this->printReceipt($print_data);
                 $code =200;
                 $json_data = array
                 (
                     'status'=>'Pooja Added Successfully',
                     'code' =>$code,
-                    'data' => $print_data
+                    //'data' => $print_data
+                    'receipt_id' => $receipt_id   // 🔥 important
                 );
                 return response()->json($json_data, $code)->header('Content-Type', 'application/json');
             }
@@ -271,95 +271,6 @@ class SevapoojaController extends Controller
         }
 
 
-
-    // =========================
-    // Actual print function
-    // =========================
-    public function printReceipt($print_data)
-    {
-        try {
-            // Change computer name & shared printer name
-            $connector = new WindowsPrintConnector("smb://DESKTOP-ABC123/EPSON");
-            $printer = new Printer($connector);
-
-            $width = 48; // 80mm Epson
-
-            /* ================= HEADER ================= */
-            $printer->setJustification(Printer::JUSTIFY_CENTER);
-            $printer->setEmphasis(true);
-            $printer->text("TEMPLE RECEIPT\n");
-            $printer->setEmphasis(false);
-            $printer->text("Thank You Visit Again\n");
-            $printer->text(str_repeat("-", $width) . "\n");
-
-            /* ================= RECEIPT INFO ================= */
-            $printer->setJustification(Printer::JUSTIFY_LEFT);
-            $printer->text("Receipt No : " . $print_data['receipt_no'] . "\n");
-            $printer->text("Date       : " . $print_data['receipt_date'] . "\n");
-            $printer->text("Time       : " . $print_data['receipt_time'] . "\n");
-            $printer->text("Customer   : " . $print_data['customer_name'] . "\n");
-            $printer->text("Mobile     : " . $print_data['mobile_no'] . "\n");
-
-            if (!empty($print_data['address'])) {
-                $printer->text("Address    : " . $print_data['address'] . "\n");
-            }
-
-            $printer->text(str_repeat("-", $width) . "\n");
-
-            /* ================= ITEM HEADER ================= */
-            $printer->text(
-                str_pad("Item", 24) .
-                str_pad("Qty", 6) .
-                str_pad("Amt", 18, " ", STR_PAD_LEFT) . "\n"
-            );
-            $printer->text(str_repeat("-", $width) . "\n");
-
-            /* ================= ITEMS ================= */
-            $subtotal = 0;
-            foreach ($print_data['items'] as $item) {
-                $name = substr($item->pooja_name, 0, 24); // limit name
-                $qty = $item->qty;
-                $total = $item->total;
-
-                $subtotal += $total;
-
-                $printer->text(
-                    str_pad($name, 24) .
-                    str_pad($qty, 6) .
-                    str_pad(number_format($total, 2), 18, " ", STR_PAD_LEFT) . "\n"
-                );
-            }
-
-            $printer->text(str_repeat("-", $width) . "\n");
-
-            /* ================= GRAND TOTAL ================= */
-            $printer->setEmphasis(true);
-            $printer->text(
-                str_pad("GRAND TOTAL", 30) .
-                str_pad(number_format($print_data['grand_total'], 2), 18, " ", STR_PAD_LEFT) . "\n"
-            );
-            $printer->setEmphasis(false);
-            $printer->text(str_repeat("-", $width) . "\n");
-
-            /* ================= PAYMENT ================= */
-            $printer->text("Payment Mode : " . $print_data['payment_method_id'] . "\n");
-
-            if (!empty($print_data['bill_desc'])) {
-                $printer->text("Note : " . $print_data['bill_desc'] . "\n");
-            }
-
-            $printer->feed(3);
-
-            /* ================= CUT ================= */
-            $printer->cut(Printer::CUT_FULL);
-            $printer->close();
-
-            return "Printed Successfully";
-
-        } catch (\Exception $e) {
-            return "Print Error: " . $e->getMessage();
-        }
-    }
 
 
     /**
