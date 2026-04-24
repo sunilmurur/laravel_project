@@ -89,9 +89,10 @@ $common['btntitle']="Add";
                                                     <th>Receipt Date</th>
                                                     <th>Customer Name </th>
                                                     <th>Payment Type </th>
-                                                    <th>Financial Year</th>
-                                                    <th>Bill Desription</th>
                                                     <th>Total</th>
+                                                    <th>Edit</th>
+                                                    <th>Print</th>
+                                                    <th>View</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -99,7 +100,7 @@ $common['btntitle']="Add";
                                             </tbody>
                                              <tfoot>
                                             <tr>
-                                            <th colspan="7" style="text-align:right"><b>Grand Total:</b></th>
+                                            <th colspan="8" style="text-align:right"><b>Grand Total:</b></th>
                                             <th></th> <!-- Total -->
                                             
                                             </tr>
@@ -143,5 +144,30 @@ $common['btntitle']="Add";
 
 
 
+ <div class="modal fade" id="viewModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5>Receipt Details</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Pooja Name</th>
+                            <th>Qty</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="viewTableBody"></tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 

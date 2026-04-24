@@ -147,7 +147,11 @@ Route::middleware('auth')->group(function () {
      Route::controller(SevapoojaController::class)->group(function () {
         Route::get('/sevapooja/view_sevapooja', 'index')->name('Sevapooja.index');
         Route::get('/sevapooja/add_pooja', 'create')->name('Sevapooja.create');
-      //  Route::post('submit_pooja_values', 'store')->name('Sevapooja.store');
+        Route::get('/sevapooja/edit_sevapooja/{id}', 'edit')->name('Sevapooja.edit'); // Edit Seva Pooja
+            // Update (AJAX)
+        Route::post('update_pooja_values', 'update')->name('Sevapooja.update');  // Update Seva Pooja
+        Route::get('/get-pooja-details/{id}', [SevaPoojaController::class, 'getPoojReceiptDetails']);
+        //  Route::post('submit_pooja_values', 'store')->name('Sevapooja.store');
         Route::get('search_customer', 'search_customer')->name('Sevapooja.search_customer');
         Route::get('search_on_code', 'search_on_code')->name('Sevapooja.search_on_code');
         Route::get('search_on_pooja', 'search_on_pooja')->name('Sevapooja.search_on_pooja');

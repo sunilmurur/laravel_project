@@ -304,6 +304,39 @@ class SevapoojaController extends Controller
     public function edit($id)
     {
         //
+        $data['title']="Edit Seva Pooja";
+         $receipt = DB::table('seva_pooja_receipts as r')
+            ->leftJoin('customer_models as c', 'c.id', '=', 'r.user_id')
+            ->leftJoin('payment_types as p', 'p.id', '=', 'r.payment_method_id')
+            ->select(
+                'r.*',
+                'c.customer_name',
+                'c.mobile_no',
+                'c.address',
+                'p.payment_type as payment_method'
+            )
+            ->where('r.id', $id)
+            ->first();
+
+        if (!$receipt) {
+            return "Receipt not found";
+        }
+
+        $receipt_items = DB::table('seva_pooja_receipt_details')
+            ->where('seva_pooja_receipt_id', $id)
+            ->get();
+        return view('seva_pooja.edit_sevapooja', [
+            'receipt' => $receipt,
+            'items' => $receipt_items,
+            'data'=> $data
+        ]);
+    }
+    public function getPoojReceiptDetails($id){
+        $receipt_items = DB::table('seva_pooja_receipt_details')
+                ->where('seva_pooja_receipt_id', $id)
+                ->get();
+        return response()->json($receipt_items);
+
     }
 
     /**
@@ -313,9 +346,75 @@ class SevapoojaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+        $financial_year_Date = financial_year_check();
+        $db_financial_year_Date_id = $financial_year_Date[0];
+        DB::beginTransaction();
+
+        try {
+
+            // Update main receipt
+            DB::table('seva_pooja_receipts')
+                ->where('id', $request->receipt_id)
+                ->update([
+                    'user_id' => $request->user_id,
+                    'receipt_date' => $request->current_date,
+                    'receipt_time' => $request->current_time,
+                    'payment_method_id' => $request->payment_method,
+                    'bill_desc' => $request->bill_desc,
+                    'grand_total' => $request->over_all_total,
+                    'financial_year_id' => $db_financial_year_Date_id,
+                    'updated_at' => now()
+                ]);
+
+            // Delete old items
+            DB::table('seva_pooja_receipt_details')
+                ->where('seva_pooja_receipt_id', $request->receipt_id)
+                ->delete();
+
+            // Insert new items
+            foreach ($request->pooja_details as $item) {
+                    $get_cat_and_subacat = '';
+                    $get_cat_and_subacat = DB::table('pooja_models')
+                    ->select('category_id','subcategory_id')
+                    ->where('id', $item['pooja_id'])
+                    ->first();
+
+                DB::table('seva_pooja_receipt_details')->insert([
+                    'seva_pooja_receipt_id' => $request->receipt_id,
+                    'pooja_id' => $item['pooja_id'],
+                    'pooja_name' => $item['pooja_name'],
+                    'pooja_code' => $item['code'],
+                    'category_id'=> $get_cat_and_subacat->category_id,
+                    'subcategory_id' => $get_cat_and_subacat->subcategory_id,
+                    'qty' => $item['qty'],
+                    'financial_year_id' => $db_financial_year_Date_id,
+                    'receipt_date' => $request['current_date'],
+                    'price' => $item['price'],
+                    'total' => $item['total'],
+                    'created_at' => now()
+                ]);
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'code' => 200,
+                'message' => 'Updated successfully'
+            ]);
+
+        } catch (\Exception $e) {
+
+            DB::rollback();
+
+            return response()->json([
+                'code' => 500,
+                'message' => 'Error',
+                'error' => $e->getMessage()
+            ]);
+        }
     }
 
     /**
