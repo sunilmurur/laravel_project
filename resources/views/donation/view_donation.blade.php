@@ -1,8 +1,15 @@
 @php
 // Breadcrum button Detail
 $common['pagetitle']=$data['title'];
-$common['btntitle']="Add";
-$common['btnurl']= route("Donation.create");
+if (Auth::user()->can('donation_create')) 
+{
+    $common['btntitle']="Add";
+    $common['btnurl']= route("Donation.create");
+}else{
+    $common['btntitle'] = 'Refresh';
+    $common['btnurl'] = null;
+}
+
 $common['breadcrumb1']="Donation";
 $common['breadcrumb2']="View Donation";
 @endphp
@@ -131,7 +138,9 @@ $common['breadcrumb2']="View Donation";
 @push('scripts')
 
 
-
+<script>
+    let canEdit = @json(auth()->user()->can('donation_edit'));
+</script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.5/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.5/js/buttons.html5.min.js"></script>

@@ -1,8 +1,15 @@
 @php
 // Breadcrum button Detail
 $common['pagetitle']=$data['title'];
+if (Auth::user()->can('pooja_view')) 
+{
 $common['btntitle']="Manage";
 $common['btnurl']= route("Pooja.index");
+}else
+{
+    $common['btntitle'] = 'Refresh';
+    $common['btnurl'] = null;
+}
 $common['breadcrumb1']="Pooja";
 $common['breadcrumb2']="Edit Pooja";
 @endphp

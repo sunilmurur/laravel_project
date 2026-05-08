@@ -15,6 +15,13 @@ class PurchaseSubcategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('permission:purchase_subcategory_create')->only(['create','store']);
+        $this->middleware('permission:purchase_subcategory_edit')->only(['edit','update']);
+        $this->middleware('permission:purchase_subcategory_delete')->only(['destroy']);
+        $this->middleware('permission:purchase_subcategory_view')->only(['index','get_all_category']);
+    }
     public function index()
     {
         //

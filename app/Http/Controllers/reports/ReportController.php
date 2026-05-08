@@ -13,6 +13,13 @@ use App\Models\ako_stocks;
 class ReportController extends Controller
 {
     //
+         public function __construct()
+    {
+        $this->middleware('permission:report_jama')->only(['ca_sales_report','ca_report_sales_ajax']);
+        $this->middleware('permission:report_karchu')->only(['ca_purchase_report','ca_report_purchase_ajax']);
+        $this->middleware('permission:report_ako_jama')->only(['ca_ako_jama_report','ca_report_ako_jama_ajax']);
+        $this->middleware('permission:report_ako_karchu')->only(['ca_ako_karchu_report','ca_report_ako_karchu_ajax']);
+    }
      public function ca_sales_report()
     {
         //

@@ -1,8 +1,15 @@
 @php
 // Breadcrum button Detail
 $common['pagetitle']=$data['title'];
-$common['btntitle']="Manage";
-$common['btnurl']= route("Purchase.index");
+if (Auth::user()->can('purchase_add_view')) 
+{
+    $common['btntitle']="Manage";
+    $common['btnurl']= route("Purchase.index");
+}else{
+    $common['btntitle'] = 'Refresh';
+    $common['btnurl'] = null;
+}
+
 $common['breadcrumb1']="Purchase";
 $common['breadcrumb2']="Add Purchase";
 @endphp

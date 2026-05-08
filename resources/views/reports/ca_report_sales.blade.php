@@ -1,6 +1,7 @@
 @php
 // Breadcrum button Detail
 $common['pagetitle']=$data['title'];
+
 $common['btntitle']="Add";
 $common['btnurl']= route("Category.create");
 $common['breadcrumb1']="Purchase Category";

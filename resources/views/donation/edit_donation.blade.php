@@ -1,8 +1,15 @@
 @php
 // Breadcrum button Detail
 $common['pagetitle']=$data['title'];
-$common['btntitle']="Manage";
-$common['btnurl']= route("Donation.index");
+if (Auth::user()->can('donation_view')) 
+{
+    $common['btntitle']="Manage";
+    $common['btnurl']= route("Donation.index");
+}else{
+    $common['btntitle'] = 'Refresh';
+    $common['btnurl'] = null;
+}
+
 $common['breadcrumb1']="Donation";
 $common['breadcrumb2']="Edit Donation";
 @endphp
@@ -30,7 +37,7 @@ $common['breadcrumb2']="Edit Donation";
                                                      $res_purchase_by =  get_purchase_by();
                                                      $res_purchase_type =  get_purcahse_type();
                                                      $res_cust_name = get_customer_byId($edit_donation->customer_id);
-                                                     print_R($edit_donation);
+                                               
                                                     @endphp
                                                     <div class="form-group row">
                                                         <label class="col-sm-2 col-form-label">Select Category</label>

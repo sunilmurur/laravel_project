@@ -1,8 +1,15 @@
 @php
 // Breadcrum button Detail
 $common['pagetitle']=$data['title'];
-$common['btntitle']="Add";
-$common['btnurl']= route("Category.create");
+if (Auth::user()->can('purchase_add_create')) 
+{
+    $common['btntitle']="Add";
+    $common['btnurl']= route("Category.create");
+}else{
+     $common['btntitle'] = 'Refresh';
+    $common['btnurl'] = null;
+}
+
 $common['breadcrumb1']="Purchase Category";
 $common['breadcrumb2']="View Purchase Category";
 @endphp
@@ -142,7 +149,9 @@ $common['breadcrumb2']="View Purchase Category";
 @endsection 
 @push('scripts')
 
-
+<script>
+    let canEdit = @json(auth()->user()->can('purchase_add_edit'));
+</script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.5/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.5/js/buttons.html5.min.js"></script>

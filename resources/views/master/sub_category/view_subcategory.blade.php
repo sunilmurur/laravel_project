@@ -1,8 +1,13 @@
 @php
 // Breadcrum button Detail
 $common['pagetitle']=$data['title'];
-$common['btntitle']="Add";
-$common['btnurl']= route("Subcategory.create");
+if (Auth::user()->can('subcategory_create')) {
+    $common['btntitle']="Add";
+    $common['btnurl']= route("Subcategory.create");
+} else {
+    $common['btntitle'] = 'Refresh';
+    $common['btnurl'] = null;
+}
 $common['breadcrumb1']="Sub Category";
 $common['breadcrumb2']="View Sub Category";
 @endphp
@@ -63,7 +68,9 @@ $common['breadcrumb2']="View Sub Category";
 <!-- Basic Form Inputs card end -->
 @endsection 
 @push('scripts')
-
+<script>
+    let canEdit = @json(auth()->user()->can('subcategory_edit'));
+</script>
 <script src="https://cdn.datatables.net/2.0.6/js/dataTables.min.js"></script>
 <script type="text/javascript" src="{{ asset('js/custom/data-table/view-subcategory.min.js') }}"></script>
 @endpush 

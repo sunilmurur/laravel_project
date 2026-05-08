@@ -1,8 +1,15 @@
 @php
 // Breadcrum button Detail
 $common['pagetitle']=$data['title'];
-$common['btntitle']="Manage";
-$common['btnurl']= route("Donation.index");
+if (Auth::user()->can('donation_view')) 
+{
+    $common['btntitle']="Manage";
+    $common['btnurl']= route("Donation.index");
+}else{
+    $common['btntitle'] = 'Refresh';
+    $common['btnurl'] = null;
+}
+
 $common['breadcrumb1']="Donation";
 $common['breadcrumb2']="Add Donation";
 @endphp

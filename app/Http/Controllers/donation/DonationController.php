@@ -13,6 +13,13 @@ use Illuminate\Support\Carbon;
 class DonationController extends Controller
 {
     //
+        public function __construct()
+    {
+        $this->middleware('permission:donation_create')->only(['create','store']);
+        $this->middleware('permission:donation_edit')->only(['edit','update']);
+        $this->middleware('permission:donation_delete')->only(['destroy']);
+        $this->middleware('permission:donation_view')->only(['index','donation_report_ajax']);
+    }
     public function index()
     {
         //

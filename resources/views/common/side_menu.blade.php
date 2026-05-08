@@ -209,6 +209,42 @@
                             </li>                          
                         </ul>
                     </li>
+
+                    <!--- Roles and Permission -->
+                     <!--Reports Menu -->
+                     @role('Super Admin')
+                    <li class="pcoded-hasmenu">
+                        <a href="javascript:void(0)">
+                            <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
+                            <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Roles / Permission</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                        
+                        <ul class="pcoded-submenu">
+                            <li class=" ">
+                                <a href="{{ route('roles.index') }}">
+                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Roles</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li> 
+                            <li class=" ">
+                                <a href="{{ route('users.roles') }}">
+                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Change Permission</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li> 
+                            <li class=" ">
+                                <a href="{{ route('users.roles') }}">
+                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Change Password</span>
+                                    <span class="pcoded-mcaret"></span>
+                                </a>
+                            </li>                            
+                        </ul>
+                    </li>
+                    @endrole
                   <!--Seva Pooja -->   
                 </ul>
                 <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Seav Pooja</div>

@@ -16,6 +16,13 @@ class ValayaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+       public function __construct()
+    {
+        $this->middleware('permission:valaya_create')->only(['create','store']);
+        $this->middleware('permission:valaya_edit')->only(['edit','update']);
+        $this->middleware('permission:valaya_delete')->only(['destroy']);
+        $this->middleware('permission:valaya_view')->only(['index','get_all_valaya']);
+    }
     public function index()
     {
         $data['title']="View Valaya";

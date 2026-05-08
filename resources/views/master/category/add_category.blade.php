@@ -1,13 +1,21 @@
     
 @php
 $common['pagetitle']=$data['title'];
-$common['btntitle']="Manage";
-$common['btnurl']= route("Category.index");
+if (Auth::user()->can('category_view')) 
+{
+    $common['btntitle']="Manage";
+    $common['btnurl']= route("Category.index");
+}else{
+    $common['btntitle'] = 'Refresh';
+    $common['btnurl'] = null;
+}
 $common['breadcrumb1']="Category";
 $common['breadcrumb2']="Add Category";
+
 @endphp
 @extends('index',$common)
 @section('pagebody')
+
 
 <div class="pcoded-content">
     <div class="pcoded-inner-content">
@@ -20,6 +28,7 @@ $common['breadcrumb2']="Add Category";
                                 <div class="col-sm-12">
                                     <!-- Basic Form Inputs card start -->
                                     <div class="card">
+                                        
                                         <div class="card-header">
                                             <div class="card-block">
                                                 <h4 class="sub-title">Category Input</h4>

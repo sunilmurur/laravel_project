@@ -1,8 +1,13 @@
 @php
 // Breadcrum button Detail
 $common['pagetitle']=$data['title'];
+if (Auth::user()->can('customer_create')) {
 $common['btntitle']="Add";
 $common['btnurl']= route("Customer.create");
+}else{
+    $common['btntitle'] = 'Refresh';
+    $common['btnurl'] = null;
+}
 $common['breadcrumb1']="Customer";
 $common['breadcrumb2']="View Customer";
 @endphp
@@ -65,6 +70,9 @@ $common['breadcrumb2']="View Customer";
 <!-- Basic Form Inputs card end -->
 @endsection 
 @push('scripts')
+<script>
+    let canEdit = @json(auth()->user()->can('customer_edit'));
+</script>
 <script src="https://cdn.datatables.net/2.0.6/js/dataTables.min.js"></script>
 <script type="text/javascript" src="{{ asset('js/custom/data-table/view-customer.min.js') }}"></script>
 @endpush 

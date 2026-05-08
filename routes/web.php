@@ -18,9 +18,8 @@ use App\Http\Controllers\sales\SalesController;
 use App\Http\Controllers\reports\ReportController;
 use App\Http\Controllers\donation\DonationController;
 use App\Http\Controllers\PrintController;
-
-
-
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserRoleController;
 
 
 /*
@@ -42,7 +41,6 @@ Route::get('/', function () {
 Route::get('/index', [TestController::class, 'index']);
 
 
-Route::get('/master/category/add_category', [CategoryController::class, 'create']);
 
 /** Artisan commands Start */
 //Clear Cache facade value:
@@ -94,6 +92,16 @@ Route::get('/clear-cache', function() {
 
 
 Route::middleware('auth')->group(function () {
+
+    //Role Controller
+    Route::resource('roles', RoleController::class);  
+
+
+    //User Role Controller
+    Route::get('/users/roles', [UserRoleController::class, 'index'])->name('users.roles');
+    Route::post('/users/roles/update/{id}', [UserRoleController::class, 'update'])->name('users.roles.update');
+    Route::post('/users/password/update/{id}',[UserRoleController::class, 'updatePassword'])->name('users.password.update');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

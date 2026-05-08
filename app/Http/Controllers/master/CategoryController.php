@@ -15,6 +15,13 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+    {
+        $this->middleware('permission:category_create')->only(['create','store']);
+        $this->middleware('permission:category_edit')->only(['edit','update']);
+        $this->middleware('permission:category_delete')->only(['destroy']);
+        $this->middleware('permission:category_view')->only(['index','get_all_category']);
+    }
     public function index()
     {
         //

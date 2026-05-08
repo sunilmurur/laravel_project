@@ -1,8 +1,15 @@
 @php
 // Breadcrum button Detail
 $common['pagetitle']=$data['title'];
-$common['btntitle']="Seva Pooja Report";
-$common['btnurl']= route("Sevapooja.seva_pooja_report");
+if (Auth::user()->can('sevapooja_view')) 
+{
+    $common['btntitle']="Seva Pooja Report";
+    $common['btnurl']= route("Sevapooja.seva_pooja_report");
+}else{
+     $common['btntitle'] = 'Refresh';
+    $common['btnurl'] = null;
+}
+
 $common['breadcrumb1']="Seva Pooja";
 $common['breadcrumb2']="Seva Pooja Billing";
 @endphp
@@ -34,8 +41,11 @@ $common['breadcrumb2']="Seva Pooja Billing";
                                                     <h4 class="sub-title">Pooja Input </h4>
                                                 </div>
                                                 <div class="col-sm-2">
+                                                    @php
+                                                    if (Auth::user()->can('customer_create')) { @endphp
                                                         <a href="{{ route('Customer.create') }}" class="sub-title breadcrumb-button btn btn-primary">Add Customer</a>
-                                                </div>
+                                                    @php } @endphp
+                                                    </div>
                                             </div>
                                                 <form  method="POST" action="{{ route('Pooja.store') }}" enctype="multipart/form-data">
                                                 @csrf
@@ -146,7 +156,9 @@ $common['breadcrumb2']="Seva Pooja Billing";
                                                     </div>
                                                     </div>
                                                     <hr>
+                                                    @php if (Auth::user()->can('sevapooja_view')) { @endphp
                                                     <button type="button" class="btn btn-primary waves-effect waves-light submit_pooja_form">Submit</button>
+                                                    @php } @endphp
                                                 </form>                                                
                                             </div>
                                         </div>

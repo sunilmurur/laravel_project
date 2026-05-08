@@ -16,6 +16,13 @@ class PoojaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+    {
+        $this->middleware('permission:pooja_create')->only(['create','store']);
+        $this->middleware('permission:pooja_edit')->only(['edit','update']);
+        $this->middleware('permission:pooja_delete')->only(['destroy']);
+        $this->middleware('permission:pooja_view')->only(['index','get_all_pooja']);
+    }
     public function index()
     {
         //

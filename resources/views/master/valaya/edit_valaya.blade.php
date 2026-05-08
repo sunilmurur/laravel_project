@@ -1,8 +1,15 @@
 @php
 // Breadcrum button Detail
 $common['pagetitle']=$data['title'];
-$common['btntitle']="Manage";
-$common['btnurl']= route("Valaya.index");
+if (Auth::user()->can('valaya_view')) 
+{
+    $common['btntitle']="Manage";
+    $common['btnurl']= route("Valaya.index");
+}else{
+     $common['btntitle'] = 'Refresh';
+     $common['btnurl'] = null;
+}
+
 $common['breadcrumb1']="Valaya";
 $common['breadcrumb2']="Edit Valaya";
 @endphp

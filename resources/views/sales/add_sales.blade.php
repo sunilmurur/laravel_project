@@ -1,8 +1,15 @@
 @php
 // Breadcrum button Detail
 $common['pagetitle']=$data['title'];
-$common['btntitle']="Manage";
-$common['btnurl']= route("Sales.index");
+if (Auth::user()->can('sales_view')) 
+{
+    $common['btntitle']="Manage";
+    $common['btnurl']= route("Sales.index");
+}else{
+    $common['btntitle'] = 'Refresh';
+    $common['btnurl'] = null;
+}
+
 $common['breadcrumb1']="Sales";
 $common['breadcrumb2']="Add Sales";
 @endphp

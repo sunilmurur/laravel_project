@@ -15,6 +15,13 @@ class SubcategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+    {
+        $this->middleware('permission:subcategory_create')->only(['create','store']);
+        $this->middleware('permission:subcategory_edit')->only(['edit','update']);
+        $this->middleware('permission:subcategory_delete')->only(['destroy']);
+        $this->middleware('permission:subcategory_view')->only(['index','get_all_subcategory']);
+    }
     public function index()
     {
         //

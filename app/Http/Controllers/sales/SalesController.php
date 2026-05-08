@@ -11,6 +11,13 @@ use Yajra\DataTables\Facades\DataTables;
 
 class SalesController extends Controller
 {
+        public function __construct()
+    {
+        $this->middleware('permission:sales_create')->only(['create','store']);
+        $this->middleware('permission:sales_edit')->only(['edit','update']);
+        $this->middleware('permission:sales_delete')->only(['destroy']);
+        $this->middleware('permission:sales_view')->only(['index','sales_report_ajax']);
+    }
       public function index()
     {
         //

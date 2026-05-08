@@ -124,7 +124,9 @@ $common['btntitle']="Add";
 @push('scripts')
 
 <script src="https://cdn.datatables.net/2.0.6/js/dataTables.min.js"></script>
-
+<script>
+    let canEdit = @json(auth()->user()->can('sevapooja_edit'));
+</script>
 
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.5/js/dataTables.buttons.min.js"></script>

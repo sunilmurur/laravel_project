@@ -17,6 +17,13 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+    {
+        $this->middleware('permission:customer_create')->only(['create','store']);
+        $this->middleware('permission:customer_edit')->only(['edit','update']);
+        $this->middleware('permission:customer_delete')->only(['destroy']);
+        $this->middleware('permission:customer_view')->only(['index','get_all_customer']);
+    }
     public function index()
     {
         //

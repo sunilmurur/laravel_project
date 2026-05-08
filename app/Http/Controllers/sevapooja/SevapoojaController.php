@@ -17,6 +17,12 @@ class SevapoojaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('permission:sevapooja_edit')->only(['edit','update']);
+        $this->middleware('permission:sevapooja_create')->only(['index','submit_pooja_values']);
+        $this->middleware('permission:sevapooja_view')->only(['seva_pooja_report_ajax','seva_pooja_report']);
+    }
     public function index()
     {
         //
