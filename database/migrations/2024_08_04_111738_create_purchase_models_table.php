@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('amount',10,2);
             $table->date("date");
             $table->integer("is_grocery_selected")->comment('Akki,Kai, Oil Selected or not');
-            $table->integer("purcahse_types_id")->comment('from purcahse types id');
+            $table->integer("purcahse_types_id")->nullable()->comment('from purcahse types id');
             $table->decimal("quantity",10,2)->comment('');
             $table->integer("financial_year_id");
             $table->integer("customer_id")->nullable()->comment('customer model');

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->time("receipt_time");
             $table->decimal('grand_total',10,2);
             $table->integer("financial_year_id");
-            $table->text("bill_desc");
+            $table->text("bill_desc")->nullable();
             $table->timestamps();
         });
     }

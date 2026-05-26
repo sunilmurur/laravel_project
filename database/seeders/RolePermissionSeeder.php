@@ -118,6 +118,9 @@ class RolePermissionSeeder extends Seeder
         // ========================
         $admin = Role::firstOrCreate(['name' => 'admin']);
         $staff = Role::firstOrCreate(['name' => 'staff']);
+        $superAdmin = Role::firstOrCreate([
+            'name' => 'Super Admin'
+        ]);
 
         // ========================
         // Flatten Permissions
@@ -127,8 +130,8 @@ class RolePermissionSeeder extends Seeder
             ->values()
             ->toArray();
 
-        // Admin → all
-        $admin->syncPermissions($allPermissions);
+        // Super Admin → all permission
+        $superAdmin->syncPermissions($allPermissions);
 
         // Staff → limited
         $staff->syncPermissions([
@@ -137,5 +140,7 @@ class RolePermissionSeeder extends Seeder
             'subcategory_view',
             
         ]);
+
+        
     }
 }
