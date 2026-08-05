@@ -26,6 +26,7 @@ class PrintController extends Controller
             return "Receipt not found";
         }
 
+        
         $receipt_items = DB::table('seva_pooja_receipt_details')
             ->where('seva_pooja_receipt_id', $id)
             ->get();
