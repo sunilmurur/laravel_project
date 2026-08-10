@@ -86,7 +86,7 @@ $common['breadcrumb2']="Seva Pooja Billing";
                                                         <label for="search_customer" class="form-label"><b>Search Customer</b></label>
                                                             <input type="text" class="form-control customer_name  @error('customer_name') is-invalid @enderror" name = "customer_name"
                                                             placeholder="Search Customer...."  value="{{ old('customer_name') }}">
-                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 100%;">
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 100%;top: auto;">
                                                                     <!-- Dropdown items will be dynamically added here -->
                                                                 </div>
                                                            

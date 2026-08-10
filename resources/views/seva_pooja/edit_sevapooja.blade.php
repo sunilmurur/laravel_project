@@ -93,7 +93,7 @@ value="{{ $receipt->receipt_time }}">
 <label><b>Search Customer</b></label>
 <input type="text" class="form-control customer_name"
 value="{{ $receipt->customer_name }}">
-<div class="dropdown-menu" style="width:100%"></div>
+<div class="dropdown-menu" style="width:100%;top: auto;"></div>
 </div>
 
 <!-- Billing Desc -->
